@@ -1,0 +1,29 @@
+﻿syntax = "proto3";
+
+package ScoreReceiver;
+
+enum MoveType {
+    Rock = 0;
+    Paper = 1;
+    Scissors = 2;
+}
+
+enum GameState {
+    Win = 0;
+    Lose = 1;
+    NotResult = 2;
+}
+
+message Score {
+    MoveType enemyChoice = 1;
+    string score = 2;
+    GameState result = 3;
+}
+
+message Empty{}
+
+service ScoreState{
+    rpc sendScore (Score) returns (Empty);
+    rpc gameStart (Empty) returns (Empty);
+    rpc clientDisconnect (Empty) returns (Empty);
+}

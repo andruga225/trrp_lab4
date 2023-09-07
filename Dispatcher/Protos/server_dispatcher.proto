@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+
+package ServerDispatcher;
+
+service ServerDispatcher{
+  rpc GetCongestion(Empty) returns (Congestion) {}
+  rpc RestoreUserState(User) returns (BoolValue) {}
+}
+
+message User {
+    string id = 1;
+}
+
+message BoolValue {
+    bool value = 1;
+}
+
+message Empty{
+
+}
+
+message Congestion{
+    int32 congestion = 1;
+}

@@ -1,0 +1,35 @@
+﻿syntax = "proto3";
+
+
+package serversinfo;
+
+service ServersInfo{
+  rpc GetServersInfo(Empty) returns (stream ServerInfo) {}
+  rpc GetUserId(Empty) returns (User) {}
+  rpc ServerConnectionLost(ConnectionLostInfo) returns (NewServerInfo) {}
+}
+
+message ConnectionLostInfo {
+	string gameId = 1;
+	string userId = 2;
+}
+
+message NewServerInfo {
+	bool isExists = 1;
+	string address = 2;
+	int32 port = 3;
+}
+
+message User {
+	string Id = 1;
+}
+
+message Empty{
+
+}
+
+message ServerInfo{
+  string address = 1;
+  int32 port = 2;
+  int32 congestion = 3;
+}

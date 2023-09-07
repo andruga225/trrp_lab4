@@ -1,0 +1,36 @@
+﻿syntax = "proto3";
+
+package gamelogic;
+
+enum MoveType {
+    Rock = 0;
+    Paper = 1;
+    Scissors = 2;
+}
+
+service GameLogic{
+  rpc connect(UserConnection) returns (ConnectionStatus) {}
+  rpc disconnect(UserConnection) returns (Empty) {}
+  rpc makeMove(Move) returns (Empty) {}
+  rpc ping(Empty) returns (Empty) {}
+}
+
+message Empty{
+
+}
+
+message Move {
+    string UserId = 1;
+    MoveType Move = 2;
+}
+
+message ConnectionStatus {
+    bool isConnected = 1;
+    string gameId = 2;
+}
+
+message UserConnection{
+    string id = 1;
+    string address = 2;
+    int32 port = 3;
+}
